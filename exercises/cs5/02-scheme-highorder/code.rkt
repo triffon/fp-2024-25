@@ -78,4 +78,35 @@
    0
    (lambda (x) (if (p x) 1 0))
    a b))
+
+(define (my-or x y) (if x #t y))
+
+(define (exists? p a b)
+  (accumulate-n
+   (lambda (x y) (or x y)) ; op
+   #f ; init
+   p ; f
+   a b))
+
+(define (forall? p a b)
+  (accumulate-n
+   (lambda (x y) (and x y)) ; op
+   #t ; init
+   p ; f
+   a b))
+
+(define (repeat5 g n)
+  (accumulate-n
+   o ; op
+   (lambda (x) x)  ; init
+   (lambda (x) g)  ; f
+   1 n))
+
+(define (repeated2 g n x)
+  (accumulate-n
+   (lambda (_q y) (g y))
+   x
+   (lambda (_x) 42)
+   1 n))
+   
    
