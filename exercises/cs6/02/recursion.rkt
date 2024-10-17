@@ -157,40 +157,75 @@
 
 ; 1. Намира броя на цифрите на дадено естествено число n.
 ; Реализирайте я с примитивна рекурсия.
-(define (count-digits n) 'undefined)
+(define (count-digits n)
+  (if (< n 10)
+      1
+      (+ 1 (count-digits (quotient n 10)))))
 
 ; 2. За дадени цяло число x и естествено число n връща x^n.
 ; Реализирайте я с примитивна рекурсия.
-(define (pow x n) 'undefined)
+(define (pow x n)
+  (if (= n 0)
+      1
+      (* x (pow x (- n 1)))))
 
 ; 3. За дадени числа a и b (a < b)
 ; намира сумата на целите числа в интервала [a,b]
 ; Реализирайте я с примитивна рекурсия.
-(define (interval-sum a b) 'undefined)
+(define (interval-sum a b)
+  (if (< a b)
+      (+ a (interval-sum (+ a 1) b))
+      a))
 
 ; 4. За дадени цели числа x и n връща x^n.
 ; Реализирайте я с линейна рекурсия (итерация).
-(define (pow-i x n) 'undefined)
+(define (pow-i x n)
+  (define (iter n acc)
+    (if (= n 0)
+        acc
+        (iter (- n 1) (* x acc))))
+
+  (iter n 1))
 
 ; 5. Намира броя на цифрите на дадено цяло число n.
 ; Реализирайте я с линейна рекурсия (итерация).
-(define (count-digits-i n) 'undefined)
+(define (count-digits-i n)
+  (define (iter n count)
+    (if (< n 10)
+        count
+        (iter (quotient n 10) (+ count 1))))
+  (iter n 1))
 
 ; 6. За дадени цели числа a и b
 ; намира сумата на целите числа в интервала [a,b].
 ; Трябва да работи и за a > b.
 ; Реализирайте я с линейна рекурсия (итерация).
-(define (interval-sum-i a b) 'undefined)
+(define (interval-sum-i a b)
+  (define (iter a b sum)
+    (if (<= a b)
+        (iter (+ a 1) b (+ a sum))
+        sum))
+  (iter a b 0))
 
 ; 7. За дадено цяло число n връща число,
 ; чийто цифри са в обратен ред.
 ; Реализирайте го с линейна рекурсия (итерация).
-(define (reverse-digits-i n) 'undefined)
+(define (reverse-digits-i n)
+  (define (iter n rev)
+    (if (= n 0)
+        rev
+        (iter (quotient n 10) (+ (* rev 10) (remainder n 10)))))
+  (iter n 0))
 
 ; 8. За дадени цели числа x и n връща x^n, но
 ; ако n е четно, то x^n = (x^2)^(n/2))
 ; Реализирайте я с линейна рекурсия (итерация).
-(define (fast-pow x n) 'undefined)
+(define (fast-pow x n)
+  (define (iter x n p)
+    (cond ((zero? n) p)
+          ((even? n) (iter (* x x) (quotient n 2) p))
+          (else (iter x (- n 1) (* x p)))))
+  (iter x n 1))
 
 ; 9. Връща #t ако цифрите на даденото число образуват
 ; палиндром, и връща #f в противен случай
