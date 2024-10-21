@@ -42,10 +42,6 @@
       (operation (term begin)
                  (accumulate operation null-value (next begin) end term next))))
 
-(define (accumulate-iter operation null-value begin end term next)                                                                       (define (accumulate operation null-value begin end term next)
-  (if (> begin end) null-value
-      (accumulate-iter operation (operation (term begin) null-value) (next begin) end term next))))
-
 (define (1+ x)
   (+ x 1))
                                                                                 
@@ -86,7 +82,9 @@
 (define (count-digits n)
   (accumulate + 0 1 n 1c (lambda (x) (* x 10))))
                         
-
+(define (accumulate-iter operation null-value begin end term next)                                                                       
+  (if (> begin end) null-value
+      (accumulate-iter operation (operation (term begin) null-value) (next begin) end term next)))
 
 
 
