@@ -26,6 +26,9 @@
 (define (reverse l)
   (foldr snoc '() l))
 
+(define (reverse l)
+  (foldl (lambda (x y) (cons y x)) '() l))
+
 (define (list-tail l n)
   (if (= n 0) l
       (list-tail (cdr l) (- n 1))))
@@ -97,3 +100,8 @@
 (define (filter p? l)
   (foldr (lambda (x r) (if (p? x) (cons x r) r)) '() l))
 
+(define (foldl op nv l)
+  (if (null? l) nv
+      (foldl op (op nv (car l)) (cdr l))))
+
+(define (evali x) (eval x (interaction-environment)))
