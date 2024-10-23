@@ -10,11 +10,11 @@
                 (lambda (f iterator)
                     (if (> iterator order) 
                         1
-                        (+ 1 (* (/ x iterator) (f f (1+ iterator))))
+                        (1+ (* (/ x iterator) (f f (1+ iterator))))
                     )
                 )
             )
         )
-        (if (= order 0) 1 (horners-method horners-method 1))
+        (horners-method horners-method 1)
     )
 )
