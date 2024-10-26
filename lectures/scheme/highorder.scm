@@ -36,3 +36,64 @@
 
 (define (derive f dx)
   (lambda (x) (/ (- (f (+ x dx)) (f x)) dx)))
+
+(define (repeated f n)
+  (lambda (x)
+    (if (= n 0) x
+        (f ((repeated f (- n 1)) x)))))
+
+(define (compose f g)
+  (lambda (x) (f (g x))))
+
+(define (repeated f n)
+  (if (= n 0) id
+      (compose f (repeated f (- n 1)))))
+
+;; (define (accumulate op nv a b term next)
+
+(define (repeated f n)
+  (accumulate compose id 1 n (lambda (i) f) 1+))
+
+(define (derive-n f n dx)
+  (if (= n 0) f
+      (derive (derive-n f (- n 1) dx) dx)))
+
+(define (derive-n f n dx)
+  ((repeated (lambda (f) (derive f dx)) n) f))
+
+(define (derive_ dx)
+  (lambda (f)
+     (lambda (x) (/ (- (f (+ x dx)) (f x)) dx))))
+
+(define (derive-n_ n dx)
+     (repeated (lambda (f) (derive f dx)) n))
+
+(define my-#t (lambda (x y) x))
+(define my-#f (lambda (x y) y))
+(define (my-if b x y) ((b x y)))
+
+(define (exists? p? l)
+  (cond ((null? l) #f)
+        ((p? (car l)) #t)
+        (else (exists? p? (cdr l)))))
+
+(define (exists? p? l)
+  (and (not (null? l)) (or (p? (car l)) (exists? p? (cdr l)))))
+
+(define (member? x l)
+  (exists? (lambda (y) (equal? x y)) l))
+
+(define (search p l)
+  (and (not (null? l)) (or (p (car l)) (search p (cdr l)))))
+
+(define (member? x l)
+  (search (lambda (y) (equal? x y)) l))
+
+(define (assoc key alist)
+  (search (lambda (kv) (and (equal? (car kv) key) kv)) alist))
+
+(define (all? p? l)
+  (null? (filter (lambda (x) (not (p? x))) l)))
+
+(define (all? p? l)
+  (not (search (lambda (x) (not (p? x))) l)))
