@@ -3,3 +3,7 @@
 [Седмица 01](./01-scheme-intro/): Въведение в Scheme
 
 [Седмица 02](./02-scheme-recursion/): Рекурсия
+
+[Седмица 03](./03-scheme-higher-order-functions/): Функции от по-висок ред
+
+[Седмица 04](./04-scheme-lists/): Работа със списъци
