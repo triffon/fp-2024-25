@@ -1,4 +1,4 @@
-# Упражнение 6
+# Упражнение 5
 
 ```scheme
 (define (foldr op init l)
