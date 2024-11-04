@@ -118,5 +118,14 @@
 (define (zipWith f lst1 lst2)
   (map (tupled f) (zip lst1 lst2)))
 
+(define (quick-sort lst)
+  (if (null? lst) '()
+      (let ((pivot (car lst))
+            (rest (cdr lst)))
+        (append (quick-sort (filter (lambda (x) (< x pivot)) rest))
+                (list pivot)
+                (quick-sort (filter (lambda (x) (>= x pivot)) rest))))))
+
+
 
  
