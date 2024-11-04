@@ -84,7 +84,17 @@
 ; Пример: (sum-lists '((1 2) () (3 4) (5 -15))) ~> 0
 (define (sum-lists lsts) 'undefined)
 
-; 2. Дума с максимална дъжлина
+; 2. Декартово произведение
+;
+; Без рекурсивни извиквания!
+(define (cartesian-prod lst1 lst2) 'undefined)
+
+; 3. Средно аритметично на много аргументи
+;
+; Пример: (avg '(1 2 3 4 5)) ~> 3
+(define (avg h . t) 'undefined)
+
+; 4. Дума с максимална дъжлина
 ;
 ; HINT: string-length за дължина на низ
 ; HINT: с помощна функция на много аргументи
@@ -92,16 +102,6 @@
 ; Пример: (longest-word '("apple" "banana" "pear")) ~> "banana"
 ; Пример: (longest-word '("Racket" "is" "powerful")) ~> "powerful"
 (define (longest-word words) 'undefined)
-
-; 3. Декартово произведение
-;
-; Без рекурсивни извиквания!
-(define (cartesian-prod lst1 lst2) 'undefined)
-
-; 4. Средно аритметично на много аргументи
-;
-; Пример: (avg '(1 2 3 4 5)) ~> 3
-(define (avg h . t) 'undefined)
 
 ; 5. Композиция на на много едноаргументни функции
 ;
