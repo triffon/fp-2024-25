@@ -63,14 +63,6 @@
                                            (make-leaf 10)
                                            (make-leaf 9))
                                 (make-leaf 11))))
-
-(define bst (make-tree 3
-                       (make-tree 1
-                                  '()
-                                  (make-leaf 2))
-                       (make-tree 4
-                                  '()
-                                  (make-leaf 5))))
 ```
 
 ## Задача 05 - Височина на дърво
