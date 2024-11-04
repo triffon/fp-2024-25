@@ -1,0 +1,16 @@
+#lang racket
+
+(define (accumulate op nv a b term next)
+    (if (> a b) nv
+        (op (term a) (accumulate op nv (next a) b term next))))
+
+(define (accumulate-i op nv a b term next)
+    (if (> a b) nv
+        (accumulate-i op (op nv (term a)) (next a) b term next)))
+
+(define (all? a b pred?)
+  (accumulate (λ (a b) (and a b)) #t a b pred? add1)
+  )
+
+(equal? (all? 100 999 (λ (x) (< x 1000))) #t)
+(equal? (all? 1 100 odd?) #f)

@@ -1,0 +1,11 @@
+digraph {
+    rankdir=LR;
+    start [shape=point];
+    start -> gosho;
+    gosho [peripheries=2];
+    gosho -> pesho [label="b"];
+    pesho -> gosho [label="a"];
+    gosho -> err [label="a"];
+    pesho -> err [label="b"];
+    err -> err[label="a,b"];
+}
