@@ -7,6 +7,12 @@
    (cons 79 20)
    (cons 'ivan #f)))
 
+(define friends
+  (list
+   (cons 'pesho (list 'gosho 'ivanka))
+   (cons 'gosho (list 'ivanka))
+   (cons 'penka (list))))
+
 (define (exists? p l)
   (if (null? l)
       #f
