@@ -10,3 +10,6 @@
 
 [Упражнение 05](./05-scheme-map-filter-fold/): `map`, `filter` и `fold`
 
+[Упражнение 06](./06-scheme-additional-exercises/): Подготвка за контролно
+
+[Упражнение 07](./07-scheme-trees-streams/) Дървета и потоци

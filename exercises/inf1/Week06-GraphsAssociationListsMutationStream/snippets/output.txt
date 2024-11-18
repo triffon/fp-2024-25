@@ -1,0 +1,2 @@
+This is some content that will be written to the file.
+Another line here.
