@@ -211,11 +211,43 @@
 ;
 ; - за да се изчислят и стойностите по ръбовете, приемете, че елементите
 ;   извън границите на матрицата имат стойност 0
-(define (triplets l1 l2 l3)
-  (if (or (null? (cddr l1)) (null? (cddr l1)) (null? (cddr l1)))
+(define (triplets lst)
+  (if (null? (cddr lst))
       '()
-      (cons (list (take l1 3) (take l2 3) (take l3 3))
-            (triplets (cdr l1) (cdr l2) (cdr l3)))))
+      (cons (take lst 3)
+            (triplets (cdr lst)))))
 
-; TODO
-(define (apply-kernel kernel mat) 'unedined)
+(define (triplet-columns l1 l2 l3)
+  (map list
+       (triplets l1)
+       (triplets l2)
+       (triplets l3)))
+
+(define (push-back x lst)
+  (if (null? lst)
+      (list x)
+      (cons (car lst) (push-back x (cdr lst)))))
+
+(define (repeat x n)
+  (if (zero? n)
+      '()
+      (cons x (repeat x (- n 1)))))
+
+; The matrix here should NOT be empty
+(define (surround-with-zeros mat)
+  (define zeros-row
+    (repeat 0 (+ (length (car mat)) 2)))
+
+  (cons zeros-row
+        (push-back zeros-row
+                   (map (lambda (row)
+                          (push-back 0 (cons 0 row)))
+                        mat))))
+
+(define (apply-kernel kernel mat)
+  (define complete-mat
+    (surround-with-zeros mat))
+
+  (map (lambda (triplet-rows)
+         (map kernel (triplet-columns triplet-columns)))
+       (triplets complete-mat)))
