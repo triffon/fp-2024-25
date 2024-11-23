@@ -2,7 +2,6 @@ module Lists where
 
 import Prelude hiding (length, head, enumFromTo, (++),
                        reverse, (!!), elem, init, last, take, drop)
-import Text.XHtml (h1, background, label)
 import Basics (x)
 
 -- >>> !!! :t (1:2):3
