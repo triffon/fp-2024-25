@@ -71,7 +71,7 @@ filter' :: _ -- Какъв е типа на filter?
 filter' _ [] = []
 filter' p (x:xs)
   | p x       = x : filter' p xs
-  | otherwise = filter p xs
+  | otherwise = filter' p xs
 ```
 
 
