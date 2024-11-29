@@ -158,6 +158,19 @@ pythagoreanTriples a b = [ (x, y, z) | x <- [a..b], y <- [x..b], z <- [y..b],
 -- >>>  pythagoreanTriples 1 100
 -- [(3,4,5),(5,12,13),(7,24,25),(8,15,17),(9,40,41),(11,60,61),(12,35,37),(13,84,85),(16,63,65),(20,21,29),(28,45,53),(33,56,65),(36,77,85),(39,80,89),(48,55,73),(65,72,97)]
 
+pythagoreanTriples' :: Int -> Int -> [(Int,Int,Int)]  
+pythagoreanTriples' a b =
+    concatMap (filter (\(x,y,_) -> gcd x y == 1) . 
+                filter (\(x,y,z) -> x^2+y^2==z^2) . 
+                    (\x ->
+                        concatMap (\y ->
+                            map (x,y,) [y..b])
+                        [x..b])) 
+                    [a..b]
+
+-- >>> pythagoreanTriples' 1 100
+-- [(3,4,5),(5,12,13),(7,24,25),(8,15,17),(9,40,41),(11,60,61),(12,35,37),(13,84,85),(16,63,65),(20,21,29),(28,45,53),(33,56,65),(36,77,85),(39,80,89),(48,55,73),(65,72,97)]
+
 init :: [a] -> [a]
 init [_] = []
 init (x:xs) = x:init xs
@@ -343,6 +356,12 @@ dropWhile _ [] = []
 dropWhile p (x:xs)
  | p x = dropWhile p xs
  | otherwise = xs
+
+dropWhile' :: (a -> Bool) -> [a] -> [a]
+dropWhile' p l = foldr (\l@(x:xs) ys -> if p x then ys else l) [] (init (scanr (:) [] l))
+
+-- >>> dropWhile' (<3) [1..10]
+-- [3,4,5,6,7,8,9,10]
 
 -- >>> any odd [1..10]
 -- True
