@@ -10,3 +10,8 @@
 6. [Дървета, асоциативни списъци и матрици](./06)
 7. [Малко контролно 1 + решения](./07)
 8. [Въведение в Haskell](./08)
+
+### Ресурси
+- [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/)
+- [Търсачка по имена и типови декларации (Hoogle)](https://hoogle.haskell.org/)
+- [Типови класове в Haskell (Typeclassopedia)](https://wiki.haskell.org/Typeclassopedia)
