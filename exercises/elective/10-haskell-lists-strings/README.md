@@ -104,12 +104,14 @@ joinWords ',' ["One", "Two", "Three", "Four"]   -- "One,Two,Three,Four"
   3. Взимаме последния символ от всеки от редовете.
 
 _Пример_:
-    "BANANA" -- rotations --> [ "BANANA", -- sort --> [ "ABANAN", -- last symbol --> "NNBAAA"
-                                "ANANAB",               "ANABAN",
-                                "NANABA",               "ANANAB",
-                                "ANABAN",               "BANANA",
-                                "NABANA",               "NABANA",
-                                "ABANAN" ]              "NANABA" ]
+```
+"BANANA" -- rotations --> [ "BANANA", -- sort --> [ "ABANAN", -- last symbol --> "NNBAAA"
+                            "ANANAB",               "ANABAN",
+                            "NANABA",               "ANANAB",
+                            "ANABAN",               "BANANA",
+                            "NABANA",               "NABANA",
+                            "ABANAN" ]              "NANABA" ]
+```
 
 7. Дефинирайте функцията `indices x xs`, която връща всички индекси на елементи от списъка `xs`, чиято стойност е равна на `x`.
 
