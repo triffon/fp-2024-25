@@ -7,7 +7,13 @@
 3. [Наредени двойки и списъци](./03)
 4. [Сгъване" на списъци с foldl/foldr](./04)
 5. [apply и функции на много аргументи](./05)
-6. [Дървета, асоциативни списъци и матрици](./06/)
+6. [Дървета, асоциативни списъци и матрици](./06)
+7. [Малко контролно 1 + решения](./07)
+8. [Въведение в Haskell](./08)
+
 
 ### Други
-1. Малко контролно 1 + решения(./other/small-midterm-exam-1/)
+- [Минали контролни и изпити](./other/past-exams)
+- [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/)
+- [Търсачка по имена и типови декларации (Hoogle)](https://hoogle.haskell.org/)
+- [Типови класове в Haskell (Typeclassopedia)](https://wiki.haskell.org/Typeclassopedia)

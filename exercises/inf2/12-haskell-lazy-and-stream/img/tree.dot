@@ -1,0 +1,70 @@
+digraph {
+    // node [label="", shape=point];
+    empty -> a;
+    empty -> b;
+
+    a -> aa;
+    a -> ab;
+    b -> ba;
+    b -> bb;
+
+    aa -> aaa;
+    aa -> aab;
+    ab -> aba;
+    ab -> abb;
+    ba -> baa;
+    ba -> bab;
+    bb -> bba;
+    bb -> bbb;
+
+    aaa -> aaaa;
+    aaa -> aaab;
+    aab -> aaba;
+    aab -> aabb;
+    aba -> abaa;
+    aba -> abab;
+    abb -> abba;
+    abb -> abbb;
+    baa -> baaa;
+    baa -> baab;
+    bab -> baba;
+    bab -> babb;
+    bba -> bbaa;
+    bba -> bbab;
+    bbb -> bbba;
+    bbb -> bbbb;
+
+    empty [label="\"\""];
+
+    a [label="\"a\""] ;
+    b [label="\"b\""] ;
+    aa [label="\"aa\""] ;
+    ab [label="\"ab\""] ;
+    ba [label="\"ba\""] ;
+    bb [label="\"bb\""] ;
+    aaa [label="\"aaa\""] ;
+    aab [label="\"aab\""] ;
+    aba [label="\"aba\""] ;
+    abb [label="\"abb\""] ;
+    baa [label="\"baa\""] ;
+    bab [label="\"bab\""] ;
+    bba [label="\"bba\""] ;
+    bbb [label="\"bbb\""] ;
+
+    aaaa [label="...", shape="point"];
+    aaab [label="...", shape="point"];
+    aaba [label="...", shape="point"];
+    aabb [label="...", shape="point"];
+    abaa [label="...", shape="point"];
+    abab [label="...", shape="point"];
+    abba [label="...", shape="point"];
+    abbb [label="...", shape="point"];
+    baaa [label="...", shape="point"];
+    baab [label="...", shape="point"];
+    baba [label="...", shape="point"];
+    babb [label="...", shape="point"];
+    bbaa [label="...", shape="point"];
+    bbab [label="...", shape="point"];
+    bbba [label="...", shape="point"];
+    bbbb [label="...", shape="point"];
+}
