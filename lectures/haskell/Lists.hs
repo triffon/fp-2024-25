@@ -4,8 +4,7 @@ import Prelude hiding (length, head, enumFromTo, (++),
                        reverse, (!!), elem, init, last, take, drop,
                        map, filter, foldr, foldl, foldr1, foldl1, scanr, scanl,
                        zip, unzip, zipWith, takeWhile, dropWhile, any, all)
-import Text.XHtml (h1, background, label)
-import Basics (x)
+
 
 -- >>> !!! :t (1:2):3
 -- (1:2):3 :: (Num a, Num [a], Num [[a]]) => [[a]]
