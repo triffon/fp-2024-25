@@ -189,8 +189,14 @@ zip = undefined
 -- Връща списък от резултатите. Като map на 2 списъка в scheme
 --
 -- Примери:
--- >>> take 5 $ zipWith + [0..] [0,-1..]
+-- >>> take 5 $ zipWith (+) [0..] [0,-1..]
 -- [0,0,0,0,0]
+--
+-- >>> zipWith (+) [] [1,2,3]
+-- []
+--
+-- >>> zipWith (+) [1,2,3] []
+-- []
 zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 zipWith = undefined
 
@@ -254,7 +260,7 @@ primes = undefined
 -- от всички Питагорови тройки.
 --
 -- Примери:
--- >>> take 7 pythagoreanTriples 
+-- >>> take 7 pythagoreanTriples
 -- [(5,3,4),(5,4,3),(10,6,8),(10,8,6),(13,5,12),(13,12,5),(15,9,12)]
 pythagoreanTriples :: [(Int, Int, Int)]
 pythagoreanTriples = undefined
