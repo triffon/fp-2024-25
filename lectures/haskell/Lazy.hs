@@ -39,3 +39,14 @@ pairs = [ (x, z - x) | z <- [0..], x <- [0..z] ]
 
 pythagoreanTriples = [ (x, y, z) | z <- [0..], y <- [0..z], x <- [0..y],
                             x^2 + y^2 == z^2, gcd x y == 1 ]
+
+noSpaces :: IO ()
+noSpaces = do text <- getContents
+              putStr (filter (/= ' ') text)
+
+v x = (+x)
+
+u = (^2)
+
+-- >>> (u . v 3) 5
+-- 64
