@@ -123,7 +123,7 @@
 ```racket
 (= (digital-root 5) 5)
 (= (digital-root 39) 3)
-(= (digital-root 493193) 2)
+(= (digital-root 493193) 1)
 ```
 
 ### Задача 13
