@@ -19,3 +19,5 @@
 [Упражнение 09](./09-haskell-tuples-lists/) Кортежи и Списъци
 
 [Упражнение 10](./10-haskell-lists-strings/) Списъци и Низове
+
+[Упражнение 11](./11-haskell-records-graphs/) Записи и Графи
