@@ -138,3 +138,107 @@ instance Measurable a => Measurable [a] where
 
 -- >>> size ([12,13], [(123,123),(12213,123321)])
 -- 21
+
+data Weekday = Mon | Tue | Wed | Thu | Fri | Sat | Sun
+  deriving (Eq, Ord, Show, Read, Enum)
+
+today :: Weekday
+today = Wed
+
+{-
+instance Show Weekday where
+  show Sat = "Sat"
+  show Sun = "Sun"
+  show _   = "Blah"
+-}
+
+-- >>> today
+-- Wed
+
+-- >>> read "Wed"::Weekday
+-- Wed
+
+-- >>> Mon < Thu
+-- True
+
+-- >>> [Mon .. Fri]
+-- [Mon,Tue,Wed,Thu,Fri]
+
+-- >>> :k Weekday
+-- Weekday :: *
+
+type Name = String
+type Score = Int
+
+--data Player = Player Name Score
+data Player = Player { name :: Name, score :: Score }
+  deriving (Eq, Ord, Read, Show)
+
+-- >>> :t Player
+-- Player :: Name -> Score -> Player
+
+-- >>> :k Player
+-- Player :: *
+
+katniss :: Player
+-- katniss = Player "Katniss Everdeen" 45
+katniss = Player { score = 45, name = "Katniss Everdeen" }
+
+-- >>> katniss == katniss
+-- True
+
+-- >>> katniss
+-- Player {name = "Katniss Everdeen", score = 45}
+
+-- >>> name katniss
+-- "Katniss Everdeen"
+
+-- >>> score katniss
+-- 45
+
+data Shape = Circle { radius :: Double } | Rectangle { width, height :: Double }
+  deriving (Eq, Show, Read, Ord)
+
+circle :: Shape
+circle = Circle 2.3
+
+rectangle :: Shape
+rectangle = Rectangle 5.3 7.5
+
+area :: Shape -> Double
+area (Circle r) = pi * r * r
+area (Rectangle h w) = h * w
+
+-- >>> circle
+-- Circle {radius = 2.3}
+
+-- >>> area circle
+-- 16.619025137490002
+
+-- >>> area rectangle
+-- 39.75
+
+-- >>> circle < rectangle
+-- True
+
+x :: Maybe Int
+x = Just 5
+
+y :: Maybe Int
+y = Nothing
+
+
+-- >>> x
+-- Just 5
+
+-- >>> y
+-- Nothing
+
+-- >>> :t Just
+-- Just :: a -> Maybe a
+
+-- >>> :k Maybe
+-- Maybe :: * -> *
+
+-- >>> :k Either
+-- Either :: * -> * -> *
