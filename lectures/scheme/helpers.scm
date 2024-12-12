@@ -41,3 +41,27 @@
 
 (define (all? p? l)
   (not (search (lambda (x) (not (p? x))) l)))
+
+;; базови функции за потоци
+(define the-empty-stream '())
+
+(define empty-stream? null?)
+
+(define-syntax cons-stream
+   (syntax-rules () ((cons-stream h t) (cons h (delay t)))))
+
+(define head car)
+
+(define (tail s) (force (cdr s)))
+
+;; функции от по-висок ред за потоци
+(define (map-stream f s)
+  (cons-stream (f (head s)) (map-stream f (tail s))))
+
+(define (filter-stream p? s)
+  (if (p? (head s)) (cons-stream (head s) (filter-stream p? (tail s)))
+                    (filter-stream p? (tail s))))
+
+(define (zip-streams op s1 s2)
+  (cons-stream (op (head s1) (head s2))
+               (zip-streams op (tail s1) (tail s2))))
