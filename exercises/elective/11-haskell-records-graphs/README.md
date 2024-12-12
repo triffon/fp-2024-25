@@ -13,7 +13,7 @@ find xs key = undefined
 2. Да се дефинира функцията `groupBy f xs`, която групира елементите на списъка `xs` на база стойността на `f` за всеки от тях.
 
 ```haskell
-groupBy :: (Eq b) => (a -> b) -> [a] -> [b -> [a]]
+groupBy :: (Eq b) => (a -> b) -> [a] -> [(b, [a])]
 groupBy f xs = undefined
 ```
 
