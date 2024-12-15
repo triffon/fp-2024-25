@@ -66,9 +66,9 @@ data Car = Car String String Int
 
 **Проблеми:**
 - Не е очевидно какво се очаква да получи конструкторът
+- Трябва сами да си дефинираме "getters" за отделните полета на типа:
 
 ```haskell
-- Трябва сами да си дефинираме "getters" за отделните полета на типа:
 company :: Car -> String
 company (Car company _ _) = company
 ```
