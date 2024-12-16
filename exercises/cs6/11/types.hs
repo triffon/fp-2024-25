@@ -166,7 +166,7 @@ mapList f (Cons h t) = Cons (f h) (mapList f t)
 predNat :: Nat -> Nat
 predNat = undefined
 
--- Конвертиране на Integer в Nat
+-- Конвертиране на положителен Integer към Nat
 --
 -- Примери:
 -- >>> integerToNat 4
@@ -177,6 +177,9 @@ integerToNat = undefined
 -- Конвертиране на Nat в Integer
 -- Трябва (integerToNat . natToInteger) да е идентитет за стойности от тип Nat
 -- Обратното не е вярно!
+--
+-- >>> natToInteger (Succ (Succ (Succ Zero)))
+-- 3
 natToInteger :: Nat -> Integer
 natToInteger = undefined
 
@@ -184,8 +187,8 @@ natToInteger = undefined
 -- Не може да използвате natToInteger!
 --
 -- Примери:
--- >>> plus (integerToNat 1) (integerToNat 2)
--- Succ (Succ (Succ Zero))
+-- >>> natToInteger $ plus (integerToNat 13) (integerToNat 17)
+-- 30
 plus :: Nat -> Nat -> Nat
 plus = undefined
 
@@ -193,8 +196,8 @@ plus = undefined
 -- Не може да използвате natToInteger!
 --
 -- Примери:
--- >>> natToInteger $ mult (integerToNat 3) (integerToNat 2)
--- 6
+-- >>> natToInteger $ mult (integerToNat 3) (integerToNat 7)
+-- 21
 mult :: Nat -> Nat -> Nat
 mult = undefined
 
@@ -204,6 +207,7 @@ mult = undefined
 -- Примери:
 -- >>> safeDiv 5 0
 -- Nothing
+--
 -- >>> safeDiv 13 5
 -- Just (2, 3)
 safeDiv :: Int -> Int -> Maybe (Int, Int)
@@ -232,29 +236,6 @@ secondaryDiag = undefined
 lookup :: Eq k => k -> [(k, v)] -> Maybe v
 lookup = undefined
 
--- Графи:
----------
-
--- NOTE: Ще използваме по-слабият тип за Graph,
---       тъй като той не ни носи никакви бонуси в сравнение с [(a,[a])],
---       направо ще работим със списъка от двойки (засега).
-
--- Връща броя наследници на даден връх
-outDeg :: Eq a => a -> [(a, [a])] -> Int
-outDeg = undefined
-
--- Връща броя родители на даден връх
-inDeg :: Eq a => a -> [(a, [a])] -> Int
-inDeg = undefined
-
--- Проверява дали има ребро между два върха
-edge :: Eq a => a -> a -> [(a, [a])] -> Bool
-edge = undefined
-
--- Проверява дали има път между два върха в ацикличен граф.
--- Бонус: да работи за графи с цикъли
-path :: Eq a => [(a, [a])] -> a -> a -> Bool
-path = undefined
 
 -- Дървета:
 -----------
@@ -274,8 +255,10 @@ safeHead = undefined
 -- Примери:
 -- >>> insertOrdered 5 Empty
 -- Node 5 Empty Empty
+--
 -- >>> insertOrdered 5 (Node 10 Empty Empty)
 -- Node 10 (Node 5 Empty Empty) Empty
+--
 -- >>> insertOrdered 5 (Node 3 Empty Empty)
 -- Node 3 Empty (Node 5 Empty Empty)
 insertOrdered :: Ord a => a -> BTree a -> BTree a
@@ -363,3 +346,27 @@ bt =
 -- нужни за да се принтират елементите от по-високите нива на дървото
 printBT :: (Show a) => BTree a -> [String]
 printBT = undefined
+
+-- Графи:
+---------
+
+-- NOTE: Ще използваме по-слабият тип за Graph,
+--       тъй като той не ни носи никакви бонуси в сравнение с [(a,[a])],
+--       направо ще работим със списъка от двойки (засега).
+
+-- Връща броя наследници на даден връх
+outDeg :: Eq a => a -> [(a, [a])] -> Int
+outDeg = undefined
+
+-- Връща броя родители на даден връх
+inDeg :: Eq a => a -> [(a, [a])] -> Int
+inDeg = undefined
+
+-- Проверява дали има ребро между два върха
+edge :: Eq a => a -> a -> [(a, [a])] -> Bool
+edge = undefined
+
+-- Проверява дали има път между два върха в ацикличен граф.
+-- Бонус: да работи за графи с цикъли
+path :: Eq a => [(a, [a])] -> a -> a -> Bool
+path = undefined
