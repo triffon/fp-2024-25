@@ -23,7 +23,7 @@ myCoolF (Triangle _ _ _) = "Doing something cool with a triangle"
 
 data Option a = Nishto | Neshto a
 
-data Greshka = DelenieNaNula | DrugaProstiq | Greshka10
+data Greshka = DelenieNaNula | DrugaProstotiq | Greshka10
 
 data Either a = Greshka a | Validno a
 
