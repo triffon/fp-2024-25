@@ -14,6 +14,14 @@ import Prelude hiding (abs, filter, map, reverse)
 abs :: Int -> Int
 abs n = if n >= 0 then n else -n
 
+apply :: (a -> b) -> a -> b
+apply f x = f x
+-- Ако сложим скобите в декларацията, можем да направим ета редукция
+-- (да съкратим втория аргумент на функцията)
+--
+--- apply :: (a -> b) -> (a -> b)
+--- apply f = f
+
 -- (->) е дясно асоциативна, тоест типа на apply можем да го запишем така:
 -- apply :: (a -> b) -> (a -> b)
 -- id :: a -> a
@@ -52,5 +60,8 @@ closed :: (Int -> Int) -> [Int] -> [Int]
 closed f xs = filter (\x -> f x `elem` xs) xs
 
 -- Може и без pattern matching по акомулираната стойност (с fst и snd)
+--
+-- NOTE: Това решение всъщност не е много коректно, защото на първата позиция
+-- понякога ще са елементите на четни позиции, а друг път тези на нечетни.
 uninterleave :: [a] -> ([a], [a])
 uninterleave = foldr (\x (xs, ys) -> (x : ys, xs)) ([], [])
