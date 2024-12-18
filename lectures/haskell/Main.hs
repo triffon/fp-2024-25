@@ -1,5 +1,7 @@
 module Main where
 
+import Control.Monad
+
 main :: IO ()
 -- main = putStrLn "Hello, Haskell!"
 -- !!! main = putStrLn ("Въведохте: " ++ getLine)
@@ -36,3 +38,24 @@ readAndSum n = do putStr "Моля, въведете число: "
                   x <- getInt
                   s <- readAndSum (n - 1)
                   return (x + s)
+
+getInts :: Int -> IO [Int]
+getInts n = sequence $ replicate n getInt
+
+printRead s = do putStr $ s ++ " = "
+                 getInt
+
+readInt :: String -> IO Int
+readInt s = do putStr $ "Моля, въведете " ++ s ++ ": "
+               getInt
+
+findAverage2 :: IO Double
+findAverage2 = do n <- readInt "брой"
+                  l <- mapM (readInt.("число #"++).show) [1..n]
+                  let s = sum l
+                  return $ fromIntegral s / fromIntegral n
+
+main2 = forever $
+        do avg <- findAverage2
+           putStrLn $ "Средното аритметично е: " ++ show avg
+           putStrLn "Хайде отново!"
