@@ -461,6 +461,7 @@ flatten :: SExpr -> SExpr -- всъщност е SList ...
 flatten (SList ses) = SList $ concatMap (list . flatten) ses
 flatten atom = SList [atom]
 -- >>> flatten sexpr
+-- SList {list = [SInt 2,SChar 'a',SBool True,SDouble 1.2]}
 
 
 
