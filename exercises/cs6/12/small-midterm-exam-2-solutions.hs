@@ -1,45 +1,24 @@
 import Prelude hiding (id)
 
--- Работим с устройства от тип Device. Всяко устройство се състои от:
--- - уникален идентификатор
--- - име на собственик
--- - име на сървър, на който се съхраняват данни за него
--- - булев флаг, който указва дали устройството е споделено
-
+-- Работим с устройства, които са описани със следния тип:
 data Device = Device
-  { id :: Int,
-    owner :: Int,
-    server :: String,
-    shared :: Bool
+  { id :: Int, -- Уникален идентификатор на устройството
+    owner :: Int, -- Идентификатор на собственика на устройството
+    server :: String, -- Име на сървъра, на който се съхраняват данни за устройството
+    shared :: Bool -- Булев флаг: True, ако устройството е споделено; False в противен случай
   }
-  deriving (Show)
 
--- Да се напише функция, която по даден списък от устройства,
--- групира споделените по server, като всяка група е групирана по owner.
--- Пример:
-exampleDevices :: [Device]
-exampleDevices =
-  [ Device 1 101 "ServerA" True,
-    Device 2 102 "ServerA" False,
-    Device 3 101 "ServerA" True,
-    Device 4 103 "ServerB" True,
-    Device 5 104 "ServerB" False,
-    Device 6 103 "ServerB" True,
-    Device 7 101 "ServerA" False,
-    Device 8 102 "ServerC" True,
-    Device 9 101 "ServerC" True,
-    Device 10 105 "ServerC" False,
-    Device 11 104 "ServerD" True,
-    Device 12 103 "ServerD" True,
-    Device 13 101 "ServerD" False,
-    Device 14 102 "ServerA" True,
-    Device 15 105 "ServerB" False,
-    Device 16 106 "ServerB" True,
-    Device 17 103 "ServerC" True,
-    Device 18 104 "ServerC" False,
-    Device 19 105 "ServerD" True,
-    Device 20 101 "ServerA" True
-  ]
+-- Трябва да се напише функция groupSharedDevices,
+-- която приема списък от устройства и връща групиране по сървър,
+-- като всяка група от сървърите е допълнително групирана по собствениците на устройствата.
+--
+-- Вход: Списък от устройства.
+--
+-- Изход: Списък от двойки, където:
+-- - Първият елемент е името на сървъра.
+-- - Вторият елемент е списък от двойки, съдържащи:
+--   - Идентификатора на собственика.
+--   - Списък с идентификаторите на устройствата, които принадлежат на този собственик на съответния сървър.
 
 -- Разделяме списък по предикат с partition
 partition :: (a -> Bool) -> [a] -> ([a], [a])
@@ -85,6 +64,30 @@ groupSharedDevices = mapSnds (mapSnd id) . groupedDevices
   where
     groupByOwner (server, devices) = (server, groupBy owner devices)
     groupedDevices = map groupByOwner . groupSharedDevicesByServer
+
+exampleDevices :: [Device]
+exampleDevices =
+  [ Device 1 101 "ServerA" True,
+    Device 2 102 "ServerA" False,
+    Device 3 101 "ServerA" True,
+    Device 4 103 "ServerB" True,
+    Device 5 104 "ServerB" False,
+    Device 6 103 "ServerB" True,
+    Device 7 101 "ServerA" False,
+    Device 8 102 "ServerC" True,
+    Device 9 101 "ServerC" True,
+    Device 10 105 "ServerC" False,
+    Device 11 104 "ServerD" True,
+    Device 12 103 "ServerD" True,
+    Device 13 101 "ServerD" False,
+    Device 14 102 "ServerA" True,
+    Device 15 105 "ServerB" False,
+    Device 16 106 "ServerB" True,
+    Device 17 103 "ServerC" True,
+    Device 18 104 "ServerC" False,
+    Device 19 105 "ServerD" True,
+    Device 20 101 "ServerA" True
+  ]
 
 -- Пример:
 -- >>> groupSharedDevices exampleDevices
