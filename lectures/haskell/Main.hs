@@ -2,6 +2,9 @@ module Main where
 
 import Control.Monad
 
+-- >>> :k IO
+-- IO :: * -> *
+
 main :: IO ()
 -- main = putStrLn "Hello, Haskell!"
 -- !!! main = putStrLn ("Въведохте: " ++ getLine)
