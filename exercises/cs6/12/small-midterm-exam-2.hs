@@ -20,6 +20,7 @@ data Device = Device
 --   - Идентификатора на собственика.
 --   - Списък с идентификаторите на устройствата, които принадлежат на този собственик на съответния сървър.
 --
+--
 groupSharedDevices :: [Device] -> [(String, [(Int, [Int])])]
 groupSharedDevices = undefined
 
