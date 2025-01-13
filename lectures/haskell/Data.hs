@@ -323,6 +323,8 @@ plusBin (BitOne  b) (BitOne  c) = BitZero $ succBin $ plusBin b c
 
 --data List a = Nil | Cons a (List a)
 data List a = Nil | Cons { listHead :: a , listTail :: List a }
+
+-- List Bool = { Nil, Cons False Nil, Cons True Nil, Cons False ....}
   deriving (Eq, Ord, Show, Read)
 
 l :: List Integer
@@ -330,6 +332,9 @@ l = Cons 1 $ Cons 2 $ Cons 3 Nil
 
 l2 :: List Bin
 l2 = Cons One $ Cons six $ Cons (plusBin six six) Nil
+
+-- >>> :k List
+-- List :: * -> *
 
 -- >>> listHead l
 -- 1
@@ -471,3 +476,81 @@ flattenH atom = [atom]
 
 -- >>> flattenH sexpr
 -- [SInt 2,SChar 'a',SBool True,SDouble 1.2]
+
+class Countable c where
+  count :: c a -> Int
+
+-- type HaskellList a = [a]
+
+-- >>> :t [True]
+-- [True] :: [Bool]
+
+-- >>> :k [Bool]
+-- [Bool] :: *
+
+--- >>> :t []
+-- [] :: [a]
+
+-- >>> :k []
+-- [] :: * -> *
+
+-- >>> :k ([] Bool)
+-- ([] Bool) :: *
+
+instance Countable [] where
+  count = length
+
+class Listable c where
+  elements :: c a -> [a]
+
+instance Listable [] where
+  elements = id
+
+{-
+class Functor f where
+  fmap , (<$>):: (a -> b) -> f a -> f b
+  (<$>) = fmap
+
+instance Functor [] where
+  fmap = map
+-}
+
+instance Functor BinTree where
+  fmap = mapBinTree
+--- >>> (+1) <$> [1..5] 
+-- [2,3,4,5,6]
+
+-- >>> (+1) <$> t
+-- Node {root = 2, left = Node {root = 3, left = Empty, right = Empty}, right = Node {root = 4, left = Empty, right = Empty}}
+
+searchBest :: [Player] -> Either Score [Name]
+searchBest players
+ | length bestPlayers == 1 = Left best
+ | otherwise = Right $ map name bestPlayers
+   where best = maximum $ map score players
+         bestPlayers = filter ((==best) . score) players
+
+-- >>> searchBest [Player "Katniss" 45, Player "Mario" 45, Player "Wario" 40]
+-- Right ["Katniss","Mario"]
+
+-- >>> length <$> searchBest [Player "Katniss" 45, Player "Mario" 45, Player "Wario" 40]
+-- Right 2
+
+
+-- >>> length <$> searchBest [Player "Katniss" 45, Player "Mario" 45, Player "Wario" 50]
+-- Left 50
+
+instance Functor Tree where
+  fmap :: (a -> b) -> Tree a -> Tree b
+  fmap f (Tree x subtrees) = Tree (f x) $ fmapTrees f subtrees
+    where
+      fmapTrees :: (a -> b) -> TreeList a -> TreeList b
+      fmapTrees _ None = None
+      fmapTrees f (SubTree t ts) = SubTree (fmap f t) (fmapTrees f ts)
+
+-- >>> tree
+-- Tree {rootTree = 1, subtrees = SubTree {firstTree = Tree {rootTree = 2, subtrees = None}, restTrees = SubTree {firstTree = Tree {rootTree = 3, subtrees = SubTree {firstTree = Tree {rootTree = 4, subtrees = None}, restTrees = None}}, restTrees = SubTree {firstTree = Tree {rootTree = 5, subtrees = None}, restTrees = None}}}}
+
+-- >>> (+1) <$> tree
+-- Tree {rootTree = 2, subtrees = SubTree {firstTree = Tree {rootTree = 3, subtrees = None}, restTrees = SubTree {firstTree = Tree {rootTree = 4, subtrees = SubTree {firstTree = Tree {rootTree = 5, subtrees = None}, restTrees = None}}, restTrees = SubTree {firstTree = Tree {rootTree = 6, subtrees = None}, restTrees = None}}}}
+

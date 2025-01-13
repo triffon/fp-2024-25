@@ -4,6 +4,7 @@
 {-# OPTIONS_GHC -fwarn-name-shadowing #-}          -- use different names!
 {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-} -- warn about incomplete patterns v2
 {-# OPTIONS_GHC -Werror #-}                        -- turn warnings into errors
+{-# LANGUAGE GHC2021 #-}
 
 data MyBool
     = MyTrue
@@ -87,3 +88,9 @@ instance Ord a => Ord (List a) where
         | x < y = True
         | otherwise = False
     (Cons _ _) <= Empty = False
+
+class Averageable a where
+    avg :: a -> Float
+
+instance Averageable (List Float) where
+    avg _ = error "not implemented"
