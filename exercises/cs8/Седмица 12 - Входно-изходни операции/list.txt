@@ -1,0 +1,3 @@
+Oranges 12
+Bread 8
+Apples 7
